@@ -5,7 +5,7 @@ Testando uma estrutura de API em TypeScript
 
 ## Instalar as dependencias  
 `npm i`
-## Criar suae variaveis de ambientes, existe um arquivo de exemplo na raiz do projeto, voce pode copiar ele e renomea-lo para `.env` e mudar os valores de acordo.  
+## Criar sua variaveis de ambientes, existe um arquivo de exemplo na raiz do projeto, voce pode copiar ele e renomea-lo para `.env` e mudar os valores de acordo.  
 ```env
 PORT=3000
 DATABASE_HOST=localhost

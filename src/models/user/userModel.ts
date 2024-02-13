@@ -1,16 +1,16 @@
 import { DataTypes, Model } from 'sequelize';
-import { UserAttributes, UserCreationAttributes } from './UserAttributes';
+import { UserAttributes, UserInputAttributes } from './UserAttributes';
 import sequelizeDatabase from '../../../config/database';
 
-class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
+class User extends Model<UserAttributes, UserInputAttributes> implements UserAttributes {
   public user_id!: number;
   public name!: string;
   public email!: string;
   public password!: string;
-  public active!: boolean;
 
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
+  public readonly deletedAt!: Date;
 
   static initUserModel() {
     return User.init(
@@ -32,22 +32,17 @@ class User extends Model<UserAttributes, UserCreationAttributes> implements User
         password: {
           allowNull: false,
           type: DataTypes.STRING
-        },
-        active: {
-          allowNull: false,
-          type: DataTypes.BOOLEAN
-        },
+        }
       },
       {
         sequelize: sequelizeDatabase,
         modelName: 'User',
         tableName: 'users',
-        timestamps: true
+        timestamps: true,
+        paranoid: true
       }
     );
   }
 }
-
-User.initUserModel();
 
 export default User;

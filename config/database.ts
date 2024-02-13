@@ -12,9 +12,8 @@ const databaseConfig = {
     user: process.env.DATABASE_USER || 'root',
     password: process.env.DATABASE_PASSWORD || '',
 };
-console.log(process.env.DATABASE_HOST);
 
-const pool = new Pool({
+const pool:Pool = new Pool({
     host: databaseConfig.host,
     port: databaseConfig.port,
     database: databaseConfig.database,
@@ -22,22 +21,22 @@ const pool = new Pool({
     password: databaseConfig.password,
 });
 
-const sequelizeDatabase = 
-new Sequelize(
-    databaseConfig.database, 
-    databaseConfig.user, 
-    databaseConfig.password,
-    {
-        host: databaseConfig.host,
-        dialect: 'postgres',
-        port: databaseConfig.port,
-        pool: {
-            ...pool,
-            max: 5,
-            min: 0,
-            idle: 10000
-        },
-    }
-);
+const sequelizeConnection:Sequelize = 
+    new Sequelize(
+        databaseConfig.database, 
+        databaseConfig.user, 
+        databaseConfig.password,
+        {
+            host: databaseConfig.host,
+            dialect: 'postgres',
+            port: databaseConfig.port,
+            pool: {
+                ...pool,
+                max: 5,
+                min: 0,
+                idle: 10000
+            },
+        }
+    );
 
-export default sequelizeDatabase;
+export default sequelizeConnection;

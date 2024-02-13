@@ -1,13 +1,13 @@
 import { Optional } from "sequelize";
 
 interface UserAttributes {
-    user_id: number;
-    name: string;
-    email: string;
-    password: string;
-    active: boolean;
-  }
+  user_id: number;
+  name: string;
+  email: string;
+  password: string;
+}
 
-interface UserCreationAttributes extends Optional<UserAttributes, 'user_id'> {}
+interface UserInputAttributes extends Optional<UserAttributes, 'user_id'> {}
+interface UserOutputAttributes extends Required<UserAttributes> {}
 
-export { UserAttributes, UserCreationAttributes };
+export { UserAttributes, UserInputAttributes, UserOutputAttributes };

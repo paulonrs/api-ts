@@ -1,13 +1,15 @@
-import { UserAttributes } from '../models/user/UserAttributes';
-import User from '../models/user/userModel';
+import UserFilter from '../models/user/UserFilter';
+import UserDal from '../db/dal/users'
 
 class UserService {
-  async getAllUsers() {
-    const users = await User.findAll({
-      where: { active: true },
-    });
-    return users;
+  private userDal: UserDal;
+  constructor(userDal:UserDal) {
+    this.userDal = userDal;
+  }
+
+  getAllUsers = async (filters: UserFilter) => {
+    return await this.userDal.getAll(filters);
   }
 }
 
-export default new UserService();
+export default UserService;
